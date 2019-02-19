@@ -1,5 +1,5 @@
 {
-  "name": "universal-app-react-router",
+  "name": "SSR-react-router",
   "version": "1.0.0",
   "private": false,
   "license": "MIT",
@@ -20,6 +20,8 @@
     "build": "react-scripts build && node scripts/build2.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "pack": "webpack --config webpack.config.js",
+    "babel": "babel src -d views",
     "watch": "webpack --watch",
     "server": "nodemon server.js --watch server.js --watch src --exec babel-node",
     "server-dev": "DEVELOPMENT=true nodemon server.js --watch server.js --watch src --exec babel-node",

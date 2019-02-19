@@ -9,7 +9,7 @@ import App from './src/App'
 import routes from './src/routes'
 
 const app = express()
-const viewPath = process.env.DEVELOPMENT ? 'view' : 'build'
+const viewPath = process.env.DEVELOPMENT ? 'views' : 'build'
 
 // Set view engine & serve static assets
 app.set('view engine', 'ejs')
