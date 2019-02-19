@@ -1,15 +1,17 @@
-import fs from 'fs';
-import path from 'path'
-import express from 'express'
+const fs = require ('fs');
+const path = require('path');
+const express  = require('express');
 import React from 'react'
 import ReactDOMServer, { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import { matchRoutes } from 'react-router-config'
-import App from './src/App'
-import routes from './src/routes'
+const App = require('./views/App');
+const routes = require('./views/routes');
 
-const app = express()
+const app = express();
 const viewPath = process.env.DEVELOPMENT ? 'views' : 'build'
+
+require('dotenv').config();
 
 // Set view engine & serve static assets
 app.set('view engine', 'ejs')
@@ -47,6 +49,8 @@ app.get('*', (req, res) => {
 		return res.render('index', {html})
 	})
 })
+
+// module.exports = app;
 
 // Run server
 const port = process.env.PORT || 3000
