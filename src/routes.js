@@ -13,11 +13,12 @@ polyfill()
 // Custom function to load the data on the server-side
 const loadData  = (match) => {
 	// Alert a warning if not an absolute url
+	// TODO change it!
 	return fetch('http://localhost:3000/books.json')
 	.then(res => res.json())
 }
 
-const routes = [
+export const routes = [
 	{ path: '/',
 		exact: true,
 		component: Home,
@@ -53,5 +54,3 @@ const routes = [
 		component: NotFound
 	}
 ]
-
-export default routes

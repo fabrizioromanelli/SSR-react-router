@@ -17,14 +17,15 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && node scripts/build2.js",
+    "start-babel": "babel-node --presets es2015 server.local.js",
+    "build": "react-scripts build && node scripts/build2.js && yarn babel",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "pack": "webpack --config webpack.config.js",
     "babel": "babel src -d views",
     "watch": "webpack --watch",
-    "server": "nodemon server.js --watch server.js --watch src --exec babel-node",
-    "server-dev": "DEVELOPMENT=true nodemon server.js --watch server.js --watch src --exec babel-node",
+    "server": "nodemon server.local.js --watch server.local.js --watch src --exec babel-node",
+    "server-dev": "DEVELOPMENT=true nodemon server.local.js --watch server.local.js --watch src --exec babel-node",
     "server-dev:watch": "npm-run-all --parallel server-dev watch"
   },
   "devDependencies": {

@@ -12,7 +12,7 @@ console.log('Start generating an index.ejs based on the index.html...');
 
 // READ index.html
 let html = fs.readFileSync(htmlPath, 'utf8');
-let ejs = html.replace('<div id="root">', '<div id="root"><%- html %>');
+let ejs = html.replace('<div id="root">', '<div id="root"><%- content %>');
 console.log('Reading the index.html file completed! Proceeding to writing...')
 
 // WRITE index.ejs

@@ -1,25 +1,26 @@
-const fs = require ('fs');
-const path = require('path');
-const express  = require('express');
+//
+// This module is the server to be called from within the lambda
+//
+import fs from 'fs';
+import path from 'path'
+import express from 'express'
 import React from 'react'
 import ReactDOMServer, { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import { matchRoutes } from 'react-router-config'
-const App = require('./views/App');
-const routes = require('./views/routes');
+import App from '../views/App'
+import { routes } from '../views/routes'
 
-const app = express();
+const server = express()
 const viewPath = process.env.DEVELOPMENT ? 'views' : 'build'
 
-require('dotenv').config();
-
 // Set view engine & serve static assets
-app.set('view engine', 'ejs')
-app.set('views', path.join(__dirname, viewPath))
-app.use(express.static(path.join(__dirname, 'build')))
+server.set('view engine', 'ejs')
+server.set('views', path.join(__dirname, '..', viewPath))
+server.use(express.static(path.join(__dirname, '..', 'build')))
 
 // Always return the main index.html, so react-router render the route in the client
-app.get('*', (req, res) => {
+server.get('*', (req, res) => {
 	const branch = matchRoutes(routes, req.url)
 	const promises = []
 
@@ -36,7 +37,7 @@ app.get('*', (req, res) => {
 			return Object.assign(context, data)
 		}, {})
 
-		const html = renderToString(
+		const content = renderToString(
 			<StaticRouter location={req.url} context={context} >
 				<App/>
 			</StaticRouter>
@@ -46,15 +47,8 @@ app.get('*', (req, res) => {
 			res.writeHead(301, {Location: context.url})
 			res.end()
 		}
-		return res.render('index', {html})
+		return res.render('index', {content})
 	})
 })
 
-// module.exports = app;
-
-// Run server
-const port = process.env.PORT || 3000
-app.listen(port, err => {
-	if (err) return console.error(err)
-	console.log(`Server listening at http://localhost:${port}`)
-})
+module.exports = server;
