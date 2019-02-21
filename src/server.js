@@ -11,6 +11,8 @@ import { matchRoutes } from 'react-router-config'
 import App from '../views/App'
 import { routes } from '../views/routes'
 
+require('dotenv').config();
+
 const server = express()
 const viewPath = process.env.DEVELOPMENT ? 'views' : 'build'
 
