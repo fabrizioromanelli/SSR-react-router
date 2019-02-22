@@ -4,7 +4,7 @@
 'use strict'
 
 require('babel-register');
-const server = require('./views/server');
+const server = require('./src/server');
 
 // Run server
 const port = process.env.PORT || 3000

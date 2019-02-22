@@ -14,6 +14,7 @@ polyfill()
 const loadData  = (match) => {
 	// Alert a warning if not an absolute url
 	// TODO change it!
+	console.log('fetching server-side...')
 	return fetch('http://localhost:3000/books.json')
 	.then(res => res.json())
 }

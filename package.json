@@ -16,6 +16,7 @@
     "react-scripts": "^1.0.10"
   },
   "scripts": {
+    "init": "yarn",
     "start": "react-scripts start",
     "start-babel": "babel-node --presets es2015 server.local.js",
     "build": "react-scripts build && node scripts/build2.js && yarn babel",
@@ -23,6 +24,8 @@
     "eject": "react-scripts eject",
     "pack": "webpack --config webpack.config.js",
     "babel": "babel src -d views",
+    "clean": "rm -rf build && rm -rf views",
+    "reset": "yarn clean && rm -rf node_modules && rm -rf yarn.lock",
     "watch": "webpack --watch",
     "server": "nodemon server.local.js --watch server.local.js --watch src --exec babel-node",
     "server-dev": "DEVELOPMENT=true nodemon server.local.js --watch server.local.js --watch src --exec babel-node",

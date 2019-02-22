@@ -8,8 +8,8 @@ import React from 'react'
 import ReactDOMServer, { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import { matchRoutes } from 'react-router-config'
-import App from '../views/App'
-import { routes } from '../views/routes'
+import App from '../src/App'
+import { routes } from '../src/routes'
 
 require('dotenv').config();
 
@@ -27,7 +27,7 @@ server.get('*', (req, res) => {
 	const promises = []
 
 	branch.forEach( ({route, match}) => {
-		if (route.loadData)
+		if (route.loadData) // fetching data
 			promises.push(route.loadData(match))
 	})
 

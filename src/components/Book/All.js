@@ -12,6 +12,7 @@ class BookAll extends Component {
 	}
 
 	componentDidMount() {
+		console.log('fetching client-side...')
 		fetch('/books.json')
 		.then(res => res.json())
 		.then((json) => {
